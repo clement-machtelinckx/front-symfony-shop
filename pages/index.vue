@@ -3,6 +3,6 @@ const runtimeConfig = useRuntimeConfig()
 </script>
 
 <template>
-<h1>yoyoyoyo</h1>
+<h1>home page</h1>
 
 </template>

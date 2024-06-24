@@ -1,32 +1,26 @@
-<script setup>
-import { ref } from 'vue';
+<script setup lang="ts">
+const { data: articles, error } = await useAsyncData('articles', () => $fetch('https://localhost:8000/api/articless'))
 
-const route = useRoute();
-const { data: pokemon } = await useFetch(`https://pokeapi.co/api/v2/pokemon?limit=151`);
-const { data: articles } = await useFetch(`https://localhost:8000/api/articles`);
+if (error.value) {
+  console.error(error.value)
+}
 
-console.log(pokemon);
+const useTruncable = (text: string, maxLength: number) => {
+  return text.length > maxLength ? text.substring(0, maxLength) + '...' : text
+}
+console.log(articles)
 </script>
 
 <template>
-
     <div>
-        <h1>Pokemon</h1>
-        <ul>
-        <li v-for="p in pokemon.results" :key="p.name">
-            <NuxtLink :to="`/pokemon/${p.name}`">{{ p.name }}</NuxtLink>
+        <h1>article</h1>
+        <div>
+            <div v-for="article in articles" :key="article.id">
+                <h2>{{ article.name }}</h2>
+                <h2>{{ article.price }}</h2>
 
-        </li>
-        </ul>
-    </div>
-    <div>
-        <h1>Articles</h1>
-        <ul>
-            <li v-for="a in articles.resultes" :key="a.name">
-                <p></p>
-            </li>
-
-        </ul>
-       
+            </div>
+            {{ articles }}
+        </div>
     </div>
 </template>
