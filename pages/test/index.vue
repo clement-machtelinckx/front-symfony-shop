@@ -1,26 +1,28 @@
 <script setup lang="ts">
-const { data: articles, error } = await useAsyncData('articles', () => $fetch('https://localhost:8000/api/articless'))
+import { onMounted } from 'vue'
+
+const { data: article, error } = await useAsyncData('articles', () => $fetch('https://localhost:8000/api/articles?page=1'))
 
 if (error.value) {
   console.error(error.value)
 }
 
-const useTruncable = (text: string, maxLength: number) => {
-  return text.length > maxLength ? text.substring(0, maxLength) + '...' : text
-}
-console.log(articles)
+
+onMounted(() => {
+  console.log(`the component is now mounted.`)
+  console.log(article)
+})
+
+console.log(article)
 </script>
 
 <template>
-    <div>
-        <h1>article</h1>
-        <div>
-            <div v-for="article in articles" :key="article.id">
-                <h2>{{ article.name }}</h2>
-                <h2>{{ article.price }}</h2>
-
-            </div>
-            {{ articles }}
-        </div>
+  <div>
+    <h1>Test</h1>
+    <div v-for="a in article">
+      <h2>{{ a.name }}</h2>
     </div>
+    <p>{{ article }}</p>
+    <p>wtf</p>
+  </div>
 </template>
