@@ -1,15 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-const runtimeConfig = useRuntimeConfig()
+import { ref } from 'vue';
+const runtimeConfig = useRuntimeConfig();
 
 async function fetchData() {
-  const data = await $fetch('https://localhost:8000/api/articles?page=1')
-  article.value = data
+  const data = await $fetch('https://localhost:8000/api/articles?page=1', {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  });
+  article.value = data;
 }
 
-const article = ref(null)
+const article = ref(null);
 
-fetchData()
+fetchData();
 </script>
 
 <template>

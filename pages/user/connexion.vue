@@ -36,7 +36,7 @@
         if (response.ok) {
             const data = await response.json()
             localStorage.setItem('token', data.token)
-            navigateTo('/user')
+            navigateTo('/')
         } else {
             error.value = 'Username or password incorrect'
         }
