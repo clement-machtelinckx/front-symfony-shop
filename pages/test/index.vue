@@ -21,6 +21,7 @@ fetchData()
         <h2>{{ a.price }}</h2>
         <p>{{ a.weight }}</p>
         <p>{{ a.price }}</p>
+        <p>{{ a.id }}</p>
       </div>
     </div>
     <p v-else>Loading...</p>

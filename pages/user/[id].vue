@@ -31,6 +31,33 @@ const router = useRouter();
 
 const user = ref({});
 
+async function check_user() {
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.log('Aucun jeton trouvé');
+      return;
+    }
+
+    const response = await fetch('https://localhost:8000/api/users', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+    } else {
+      console.log('Réponse du serveur avec un statut d\'erreur');
+    }
+  } catch (error) {
+    console.log('Erreur réseau :', error);
+  }
+}
+check_user()
+
+
 async function getUser() {
   const token = localStorage.getItem('token');
 
@@ -59,6 +86,8 @@ async function getUser() {
     // Gérer les erreurs réseau ou autres erreurs
   }
 }
+
+
 
 async function updateUser() {
   const token = localStorage.getItem('token');

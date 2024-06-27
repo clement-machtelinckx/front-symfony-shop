@@ -14,7 +14,10 @@ async function fetchData() {
 const article = ref(null);
 
 fetchData();
+
 </script>
+
+
 
 <template>
   <div>
@@ -25,6 +28,10 @@ fetchData();
         <h2>{{ a.price }}</h2>
         <p>{{ a.weight }}</p>
         <p>{{ a.price }}</p>
+        <p>{{ a.id }}</p>
+        <NuxtLink :to="`/articles/${a.id}`">infos</NuxtLink>
+
+
       </div>
     </div>
     <p v-else>Loading...</p>
