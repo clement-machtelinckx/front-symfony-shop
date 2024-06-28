@@ -1,1 +1,10 @@
-body {background-color: aqua;}
+.header {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(196, 233, 233);
+}
+.header li {
+    list-style-type: none;
+    margin: 10px;
+
+}

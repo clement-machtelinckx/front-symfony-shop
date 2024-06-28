@@ -11,18 +11,6 @@ async function fetchData() {
   article.value = data;
 }
 
-function addToCart(article) {
-  // Vérifiez si le panier existe déjà dans le local storage
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-  // Ajoutez l'article au panier
-  cart.push(article);
-
-  // Enregistrez le panier dans le local storage
-  localStorage.setItem('cart', JSON.stringify(cart));
-
-  console.log(article);
-}
 
 const article = ref(null);
 
@@ -43,7 +31,8 @@ fetchData();
         <p>{{ a.price }}</p>
         <p>{{ a.id }}</p>
         <NuxtLink :to="`/articles/${a.id}`">infos</NuxtLink>
-        <button @click="addToCart(a)">Ajouter au panier</button>
+
+        
 
 
       </div>
