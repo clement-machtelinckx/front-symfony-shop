@@ -31,6 +31,7 @@ const router = useRouter();
 
 const user = ref({});
 
+
 async function check_user() {
   try {
     const token = localStorage.getItem('token');
